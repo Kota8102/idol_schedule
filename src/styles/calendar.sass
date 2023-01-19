@@ -1,0 +1,65 @@
+.calendar
+  @media (max-width: 768px) 
+    .fc .fc-toolbar.fc-header-toolbar
+      margin-left: 0.1rem
+      margin-right: 0.1rem
+
+    .fc-header-toolbar
+      // flex-flow: column
+      // align-items: start !important
+    .fc .fc-toolbar-title
+      font-size: 1.25rem
+      // font-weight: 400
+    .fc .fc-today-button
+      font-size: 1rem
+      padding: 0
+
+    .fc .fc-button-primary:not(:disabled).fc-button-active, 
+    .fc .fc-button-primary:not(:disabled):active
+      padding: 0.25rem
+
+    .fc .fc-button-primary
+      padding: 0.25rem
+
+    .fc-direction-ltr .fc-toolbar>*>:not(:first-child)
+      margin-left: 0.25rem
+
+  .fc .fc-toolbar.fc-header-toolbar
+    margin-bottom: 1rem
+
+  .fc .fc-today-button
+    // font-size: 1rem
+    border: none
+    outline: none
+
+  .fc .fc-today-button:disabled
+    font-size: 1rem
+    color: #000000
+    background-color: #ffffff
+    opacity: 1
+
+  .fc .fc-button-primary
+    font-size: 1rem
+    background-color: #ffffff00
+    color: #4b5563
+    border: none
+    // outline: none
+
+  .fc .fc-button-primary:focus
+    box-shadow: none
+
+  .fc .fc-button-primary:not(:disabled).fc-button-active, 
+  .fc .fc-button-primary:not(:disabled):active
+    background-color: #e5e7eb
+    color: #000000
+
+  .fc .fc-button-primary:not(:disabled).fc-button-active:focus, 
+  .fc .fc-button-primary:not(:disabled):active:focus
+    box-shadow: none
+
+  .tracking-wide
+    color: #ffffff
+
+  .fc .fc-list-event.fc-event-forced-url:hover
+    color: #000000
+    opacity: 1 !important
