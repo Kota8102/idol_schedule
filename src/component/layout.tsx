@@ -17,8 +17,8 @@ const Layout = ({ children, isIdolslist }: Props) => {
   // const [name, setName] = useState('');
 
   // const [checkList, setCheckList] = useState<boolean[]>([]);
-  const [groupidList,setGroupidList]=useState<string[]>(["1","2","3","4"]);
-  const [checkList, setCheckList] = useState<boolean[]>(new Array(4).fill(true));
+  const [groupidList,setGroupidList]=useState<string[]>(Array.from({length: 13}, (_, i) => i + 1).map(i => i.toString()));
+  const [checkList, setCheckList] = useState<boolean[]>(new Array(13).fill(true));
 
     return (
       // <CheckboxContext.Provider value={{check, setCheck, name, setName}}>

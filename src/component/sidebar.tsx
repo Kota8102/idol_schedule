@@ -2,6 +2,8 @@ import React from "preact/compat";
 
 import IdolsList from "./molecule/idolslist";
 
+import { idols } from "./atom/idols";
+
 type Props = {
     isIdolslist?: boolean
 }
@@ -10,7 +12,7 @@ const Sidebar: React.FC<Props> = ( {isIdolslist} ) =>{
 
     return (
         <div>
-            {isIdolslist ? <IdolsList /> : null}
+            {isIdolslist ? <IdolsList idols={idols}/> : null}
         </div>
 
     );
