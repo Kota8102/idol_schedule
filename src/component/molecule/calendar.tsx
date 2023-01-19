@@ -57,19 +57,20 @@ const Calendar: React.FC = (): JSX.Element => {
     return (
       <div className='calendar'>
         <FullCalendar
-            plugins={[dayGridPlugin, listPlugin]}
-            initialView="dayGridMonth"
-            locales={[jaLocale]}
-            locale="ja"
-            contentHeight={"auto"}
-            headerToolbar={
+            plugins = {[dayGridPlugin, listPlugin]}
+            initialView = "dayGridMonth"
+            locales = {[jaLocale]}
+            dayMaxEvents = {6}
+            locale = "ja"
+            contentHeight = {"auto"}
+            headerToolbar = {
                 { left: 'prev today next', center: 'title', right: 'dayGridMonth listMonth'}
             }
-            businessHours={{ daysOfWeek: [1, 2, 3, 4, 5] }}
-            events={filterevents}
+            businessHours = {{ daysOfWeek: [1, 2, 3, 4, 5] }}
+            events = {filterevents}
 
             // eventのcssを調整
-            eventDidMount={(info) => {
+            eventDidMount = {(info) => {
                 const event = info.event;
                 const element = info.el;
 
@@ -89,7 +90,7 @@ const Calendar: React.FC = (): JSX.Element => {
               }}
               
             // eventのクリック時の動作
-            eventClick={info => {
+            eventClick = {info => {
                 window.open(info.event.url, "_self");
                 // window.open(info.event.url, "_blank");
               }}
