@@ -8,9 +8,27 @@ import CheckboxContext from '../../contexts/CheckboxContext';
 
 import "../../styles/calendar.sass"
 
+
+
 const Calendar: React.FC = (): JSX.Element => {
 
     const [events, setEvents] = useState([]);
+
+    const groupColors: { [key: string]: string } = {
+      '1': '#a855f7',
+      '2': '#059669',
+      '3': '#f43f5e',
+      '4': '#0284c7',
+      '5': '#0284c7',
+      '6': '#2563eb',
+      '7': '#d946ef',
+      '8': '#ec4899',
+      '9': '#404040',
+      '10': '#64748b',
+      '11': '#0d9488',
+      '12': '#d97706',
+      '13': '#6d28d9'
+    };
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { checkList, setCheckList, groupidList, setGroupidList } = useContext(CheckboxContext);
@@ -59,19 +77,7 @@ const Calendar: React.FC = (): JSX.Element => {
                 element.classList.add('text-xs', 'leading-5', 'tracking-wide', 'pl-1',);
                 
                 // group毎の色を決定
-                if (event.groupId === '1') {
-                    element.style.backgroundColor = '#a855f7';
-                } else if (event.groupId === '2') {
-                    element.style.backgroundColor = '#059669';
-                } else if (event.groupId === '3') {
-                  element.style.backgroundColor = '#f43f5e';
-                }
-                else if (event.groupId === '4') {
-                  element.style.backgroundColor = '#0284c7';
-                }
-                else if (event.groupId === '5') {
-                  element.style.backgroundColor = '#0284c7';
-                }
+                element.style.backgroundColor = groupColors[event.groupId] || 'white';
                 
                 // hober時の動作
                 element.addEventListener('mouseenter', () => {
