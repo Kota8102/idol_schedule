@@ -22,3 +22,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           aws s3 cp --recursive --region ap-northeast-1 build s3://idolscheduler.com
+
+      - name: Clear cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id EGKESAJORY4US --paths "/*"
