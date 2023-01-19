@@ -1,14 +1,16 @@
 import React from 'react';
 
 import Layout from '../component/layout';
+import Table from '../component/atom/table';
 
 const Idols: React.FC = () => {
 
     return (
         <Layout>
-            <div className="bg-red-500 text-white text-center py-12">
-            <p className="text-xl">工事中</p>
-        </div>
+            <div>
+                <h1 className="m-3 text-xl font-medium">Idol List</h1>
+                <Table />
+            </div>
         </Layout>
         
     );

@@ -13,7 +13,7 @@ const IdolsList:React.FC<{ idols:Props[] }> = ({ idols }) => {
     return(
 
         <div className="mt-1 md:mt-16">
-            <h2 className="ml-1 text-lg">アイドル一覧</h2>
+            <h2 className="ml-1 text-xl font-medium">Idol List</h2>
                 <div className="flex flex-wrap md:flex-col">           
                 {idols.map((idol, index) => (
                 <Checkbox key={index} inp_name={idol.name} color={idol.color} index={index} groupid={idol.groupid} />

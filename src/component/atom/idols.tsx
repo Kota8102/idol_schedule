@@ -30,3 +30,4 @@ export const groupColors = {
   '12': '#d97706',
   '13': '#6d28d9'
 };
+
