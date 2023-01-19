@@ -26,7 +26,7 @@ const Layout = ({ children, isIdolslist }: Props) => {
 
         <div className="flex flex-col h-screen">
           <Header />
-          <main className="flex-grow py-5 md:p-6">
+          <main className="flex-grow py-1 md:p-6">
             <div className="flex flex-col md:flex-row">
               <div className="basis-1/12 p-4 md:inline-block">
                 <Sidebar isIdolslist={isIdolslist}/>
