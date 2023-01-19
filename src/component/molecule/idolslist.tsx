@@ -9,7 +9,8 @@ const IdolsList:React.FC = () => {
         { name: "yosugala", color: "accent-purple-500", groupid: "1"},
         { name: "きのホ。", color: "accent-emerald-600", groupid: "2"},
         { name: "SANDAL TELEPHONE", color: "accent-rose-500", groupid: "3"},
-        { name: "タイトル未定", color: "accent-sky-600", groupid: "4"}
+        { name: "タイトル未定", color: "accent-sky-600", groupid: "4"},
+        { name: "タイトル未定", color: "accent-sky-600", groupid: "5"}
       ];
 
     return(
