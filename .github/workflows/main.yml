@@ -23,10 +23,11 @@ jobs:
         run: |
           aws s3 cp --recursive --region ap-northeast-1 build s3://idolscheduler.com
 
-      - name: Clear cache
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@v2
         env:
-            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            aws-region: ap-northeast-1
-        run: |
-          aws cloudfront create-invalidation --distribution-id EGKESAJORY4US --paths "/*"
+          DISTRIBUTION: ${{ secrets.DISTRIBUTION }}
+          PATHS: "/index.html"
+          AWS_REGION: "us-east-1"
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
