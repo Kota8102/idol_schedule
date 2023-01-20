@@ -1,12 +1,14 @@
 import React from 'react';
 import Layout from '../component/layout';
 
+// 名前、メールアドレス、電話番号、所属、お問い合わせ内容
+
 const ContactPage: React.FC = () => {
 
   return (
     <Layout>
       <div>
-        aaa
+
       </div>
     </Layout>
   );

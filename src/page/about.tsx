@@ -22,7 +22,7 @@ const markdownText = `
 
 このサイトに関するお問い合わせは、以下のフォームからご送信ください。
 
-[お問い合わせ](/contact)
+[お問い合わせ](https://forms.gle/qBN7Y265P82KL4xi6)
 
 
 `;
