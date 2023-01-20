@@ -54,6 +54,7 @@ const Calendar: React.FC = (): JSX.Element => {
         return groupidList.includes(info.groupId);
       });
       
+      
     return (
       <div className='calendar'>
         <FullCalendar
