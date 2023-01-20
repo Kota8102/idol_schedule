@@ -13,7 +13,9 @@ const Button: React.FC = () => {
                 setGroupidList([])
                 setCheckList(new Array(13).fill(false))
               }}
-            >全てを解除</button>
+            >
+                全てを解除
+        </button>
     )
 }
 
