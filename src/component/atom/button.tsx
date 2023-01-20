@@ -3,6 +3,7 @@ import CheckboxContext from '../../contexts/CheckboxContext';
 
 const Button: React.FC = () => {
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { checkList, setCheckList, groupidList, setGroupidList } = useContext(CheckboxContext);
 
     return (

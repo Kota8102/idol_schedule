@@ -6,7 +6,7 @@ import AboutPage from '../page/about';
 import Idols from '../page/idols';
 import Privacy from '../page/privacy';
 import NotFound from '../page/404';
-import ContactPage from '../page/contact';
+// import ContactPage from '../page/contact';
 
 const RouteManager:React.FC=() => {
     return (
@@ -17,7 +17,7 @@ const RouteManager:React.FC=() => {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/idols" element={<Idols />} />
           <Route path="/privacypolicy" element={<Privacy />} />
-          <Route path="/contact" element={<ContactPage />} />
+          {/* <Route path="/contact" element={<ContactPage />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
