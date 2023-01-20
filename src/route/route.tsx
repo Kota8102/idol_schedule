@@ -2,10 +2,11 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "../page/home";
-import About from '../page/about';
+import AboutPage from '../page/about';
 import Idols from '../page/idols';
 import Privacy from '../page/privacy';
 import NotFound from '../page/404';
+import ContactPage from '../page/contact';
 
 const RouteManager:React.FC=() => {
     return (
@@ -13,9 +14,10 @@ const RouteManager:React.FC=() => {
        <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/idols" element={<Idols />} />
           <Route path="/privacypolicy" element={<Privacy />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
