@@ -1,16 +1,39 @@
 import React from 'react';
-
 import Layout from '../component/layout';
+import Markdown from '../component/markdown';
 
-function About() {
+const markdownText = `
+# このサイトについて
+本サイトの内容と方針について簡単に説明します。
+
+## 本サイトの内容について
+このサイトは、地下アイドルのライブ情報をまとめているサイトです。
+
+登録しているアイドルは、私がよくライブに行くアイドルのみであり、今後の追加の可能性もあります。
+
+ライブ情報は、1日1回(0時更新)で提供しています。
+
+## プライバシーポリシー
+このブログサイトでは Cookie を取得しています。詳しくはプライバシーポリシーをご確認ください。
+
+[プライバシーポリシー](/privacypolicy)
+
+## お問い合わせ
+
+このサイトに関するお問い合わせは、以下のフォームからご送信ください。
+
+[お問い合わせ](/contact)
+
+
+`;
+
+const AboutPage: React.FC = () => {
+
   return (
     <Layout>
-      <div>
-        <h1>About</h1>
-        <p>This is an about page.</p>
-      </div>
+      <Markdown body={markdownText} />
     </Layout>
   );
 }
 
-export default About;
+export default AboutPage;
