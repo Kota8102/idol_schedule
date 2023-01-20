@@ -1,6 +1,7 @@
 import React from "react";
 
 import Checkbox from "../atom/checkbox";
+import Button from "../atom/button";
 
 type Props ={
     name: string
@@ -12,16 +13,19 @@ const IdolsList:React.FC<{ idols:Props[] }> = ({ idols }) => {
 
     return(
 
-        <div className="mt-1 md:mt-16">
+        <div className="mt-1 flex flex-col md:mt-16">
             <h2 className="ml-1 text-xl font-medium">Idol List</h2>
-                <div className="flex flex-wrap md:flex-col">           
+    
+            <div className="flex flex-wrap md:flex-col">           
                 {idols.map((idol, index) => (
                 <Checkbox key={index} inp_name={idol.name} color={idol.color} index={index} groupid={idol.groupid} />
                 ))}
-                    {/* {idols.map((idol, index) => (
-                    <Checkbox key={index} name={idol.name} isCheck={true} color={idol.color} />
-                    ))} */}
-                </div>
+            </div>
+            
+            <div className="mt-3">
+                <Button/ >
+            </div>
+            
         </div>
 
     )

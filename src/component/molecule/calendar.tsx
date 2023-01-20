@@ -53,6 +53,8 @@ const Calendar: React.FC = (): JSX.Element => {
       const filterevents = events.filter((info: { groupId: string; }) => {
         return groupidList.includes(info.groupId);
       });
+
+      console.log(groupidList)
       
       
     return (
