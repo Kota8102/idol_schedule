@@ -3,21 +3,20 @@
 [![Build React on S3](https://github.com/Kota8102/idol_schedule/actions/workflows/main.yml/badge.svg)](https://github.com/Kota8102/idol_schedule/actions/workflows/main.yml)
 https://img.shields.io/github/languages/code-size/Kota8102/idol_schedule
 
-# 概要
+[site](https://idolcalendar.info/)
+
+# overview
+
+地下アイドルのライブ情報をまとめたサイトです。
+
+フロントエンドは、React + TypeScript + Tailwind CSSを用いて実装しています。
+バックエンドは、AWSを用いたサーバーレス構成を採用しています。
+
 
 ## Development
-In the project's directory, run the following commands:
+プロジェクトのディレクトリで、以下のコマンドを実行します。
 
 ```bash
 npm install
 npm start
 ```
-
-This will start webpack-dev-server and enable hot reloading. Then visit:
-```bash
-http://localhost:3000
-```
-
-## url
-
-https://idolcalendar.info/
