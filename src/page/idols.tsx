@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Layout from '../component/layout';
+import Layout from '../component/organisms/layout';
 import Table from '../component/atom/table';
 
 const Idols: React.FC = () => {

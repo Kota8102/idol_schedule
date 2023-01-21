@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-import Layout from '../component/layout';
+import Layout from '../component/organisms/layout';
 
 const NotFound: React.FC = () => {
     const location = useLocation();
