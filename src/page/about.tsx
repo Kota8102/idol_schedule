@@ -24,7 +24,6 @@ const markdownText = `
 
 [お問い合わせ](https://forms.gle/qBN7Y265P82KL4xi6)
 
-
 `;
 
 const AboutPage: React.FC = () => {
