@@ -1,8 +1,8 @@
 import React from "preact/compat";
 
-import IdolsList from "./molecule/idolslist";
+import IdolsList from "../molecule/idolslist";
 
-import { idols } from "./atom/idols";
+import { idols } from "../atom/idols";
 
 type Props = {
     isIdolslist?: boolean

@@ -1,6 +1,6 @@
 import React from 'react';
-import Layout from '../component/layout';
-import Markdown from '../component/markdown';
+import Layout from '../component/organisms/layout';
+import Markdown from '../component/molecule/markdown';
 
 const markdownText = `
 # このサイトについて
