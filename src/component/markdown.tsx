@@ -10,7 +10,7 @@ type Props = {
 const Markdown:React.FC<Props> = ( {body} ) => {
 
     return (
-        <div className="markdown prose max-w-none">
+        <div className="markdown prose max-w-none m-4 md:m-0">
             <ReactMarkdown>
                 {body}
             </ReactMarkdown>
