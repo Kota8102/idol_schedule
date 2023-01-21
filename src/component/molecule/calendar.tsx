@@ -5,10 +5,9 @@ import jaLocale from '@fullcalendar/core/locales/ja';
 import listPlugin from '@fullcalendar/list';
 
 import CheckboxContext from '../../contexts/CheckboxContext';
+import LoadingContext from '../../contexts/LoadingContext';
 
 import "../../styles/calendar.sass"
-
-
 
 const Calendar: React.FC = (): JSX.Element => {
 
@@ -33,9 +32,14 @@ const Calendar: React.FC = (): JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { checkList, setCheckList, groupidList, setGroupidList } = useContext(CheckboxContext);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { isLoading, setIsLoading } = useContext(LoadingContext);
+
     useEffect(() => {
         // APIからJSONデータを取得
         const fetchEvents = async () => {
+          setIsLoading(true);
+          
           const res = await fetch('https://jbwg9oogwc.execute-api.ap-northeast-1.amazonaws.com/json', {
             method: 'POST',
             mode: "cors",
@@ -46,17 +50,16 @@ const Calendar: React.FC = (): JSX.Element => {
           const data = await res.json();
 
           setEvents(data);
+          setIsLoading(false);
         };
         fetchEvents();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
 
       const filterevents = events.filter((info: { groupId: string; }) => {
         return groupidList.includes(info.groupId);
       });
 
-      console.log(groupidList)
-      
-      
     return (
       <div className='calendar'>
         <FullCalendar
