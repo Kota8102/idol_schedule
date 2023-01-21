@@ -3,6 +3,7 @@ import CheckboxContext from '../../contexts/CheckboxContext';
 
 const Button: React.FC = () => {
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { checkList, setCheckList, groupidList, setGroupidList } = useContext(CheckboxContext);
 
     return (
@@ -13,7 +14,9 @@ const Button: React.FC = () => {
                 setGroupidList([])
                 setCheckList(new Array(13).fill(false))
               }}
-            >全てを解除</button>
+            >
+                全てを解除
+        </button>
     )
 }
 
