@@ -1,7 +1,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
-import "../styles/layout.sass"
+import "../../styles/layout.sass"
 
 type Props = {
     body : string
