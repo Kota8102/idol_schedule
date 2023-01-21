@@ -1,7 +1,7 @@
 import React from "react";
 
 import Checkbox from "../atom/checkbox";
-import Button from "../atom/button";
+import Toggle from "../atom/toggle";
 
 type Props ={
     name: string
@@ -21,9 +21,8 @@ const IdolsList:React.FC<{ idols:Props[] }> = ({ idols }) => {
                 <Checkbox key={index} inp_name={idol.name} color={idol.color} index={index} groupid={idol.groupid} />
                 ))}
             </div>
-            
             <div className="mt-3">
-                <Button/ >
+                <Toggle />
             </div>
             
         </div>
