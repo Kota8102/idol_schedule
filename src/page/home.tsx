@@ -2,6 +2,7 @@ import React from 'react';
 
 import Layout from '../component/organisms/layout';
 import Calendar from '../component/molecule/calendar';
+import Loader from '../component/atom/loader';
 
 const Home: React.FC = (): JSX.Element => {
 
@@ -9,7 +10,9 @@ const Home: React.FC = (): JSX.Element => {
     <Layout isIdolslist={true}>
       
         <div>
-          <Calendar />
+          <Loader />
+          <div><Calendar /></div>
+          
         </div>
       
     </Layout>
