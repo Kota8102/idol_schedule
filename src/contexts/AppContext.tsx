@@ -17,10 +17,11 @@ const AppContext: React.FC<Props> = ( { children } ) => {
 
     const [showModal, setShowModal] = useState(false)
     const [ModalEvent, setModalEvent] = useState<string[]>([])
+    const [clientY, setClientY] = useState(0)
 
 
     return (
-        <ModalContext.Provider value={{ showModal, setShowModal, ModalEvent, setModalEvent}}>
+        <ModalContext.Provider value={{ showModal, setShowModal, ModalEvent, setModalEvent, clientY, setClientY}}>
             <CheckboxContext.Provider value={{ checkList, setCheckList, groupidList, setGroupidList }}>
                 <LoadingContext.Provider value={{ isLoading, setIsLoading}} >
                     {children}
