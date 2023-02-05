@@ -6,8 +6,10 @@ import listPlugin from '@fullcalendar/list';
 
 import CheckboxContext from '../../contexts/CheckboxContext';
 import LoadingContext from '../../contexts/LoadingContext';
+import ModalContext from '../../contexts/ModalContext';
 
 import "../../styles/calendar.sass"
+import ModalComp from './modal';
 
 const Calendar: React.FC = (): JSX.Element => {
 
@@ -35,31 +37,37 @@ const Calendar: React.FC = (): JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { isLoading, setIsLoading } = useContext(LoadingContext);
 
+    // eslint-disable-next-line @typescript-eslint/no-redeclare, @typescript-eslint/no-unused-vars
+    const {showModal, setShowModal, ModalEvent, setModalEvent} = useContext(ModalContext);
+
     useEffect(() => {
         // APIからJSONデータを取得
         const fetchEvents = async () => {
           setIsLoading(true);
           
-          const res = await fetch('https://jbwg9oogwc.execute-api.ap-northeast-1.amazonaws.com/json', {
+          const res = await fetch('https://p1crz86hlk.execute-api.ap-northeast-1.amazonaws.com/production/events', {
             method: 'POST',
             mode: "cors",
             headers: {
               'Content-Type': 'application/json',
             },
           });
+
           const data = await res.json();
 
-          setEvents(data);
+          // setEvents(data);
+          setEvents(JSON.parse(data.body));
           setIsLoading(false);
         };
         fetchEvents();
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
-
+      
+      // console.log(events)s
       const filterevents = events.filter((info: { groupId: string; }) => {
         return groupidList.includes(info.groupId);
       });
-
+        
     return (
       <div className='calendar'>
         <FullCalendar
@@ -74,6 +82,7 @@ const Calendar: React.FC = (): JSX.Element => {
             }
             businessHours = {{ daysOfWeek: [1, 2, 3, 4, 5] }}
             events = {filterevents}
+            // events = {events}
 
             // eventのcssを調整
             eventDidMount = {(info) => {
@@ -97,11 +106,27 @@ const Calendar: React.FC = (): JSX.Element => {
               
             // eventのクリック時の動作
             eventClick = {info => {
-                window.open(info.event.url, "_self");
-                // window.open(info.event.url, "_blank");
+              const event = info.event;
+
+              console.log(event.extendedProps.description)
+
+              let dateValue: Date | null = null;
+              
+              if (event.start) {
+                dateValue = new Date(event.start);
+              }
+              
+              let formatdateValue = '';
+              if (dateValue) {
+                formatdateValue = dateValue.toLocaleDateString('ja-JP', {month: '2-digit', day: '2-digit', weekday: 'short'});
+              }
+              
+              setShowModal(true);
+              setModalEvent([event.title, formatdateValue, event.extendedProps.description, event.extendedProps.location, event.extendedProps.idolname]);
+              
               }}
         />
-
+            {showModal && (<ModalComp />)}
       </div>
     );
   }
