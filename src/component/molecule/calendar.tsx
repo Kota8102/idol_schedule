@@ -38,7 +38,7 @@ const Calendar: React.FC = (): JSX.Element => {
     const { isLoading, setIsLoading } = useContext(LoadingContext);
 
     // eslint-disable-next-line @typescript-eslint/no-redeclare, @typescript-eslint/no-unused-vars
-    const {showModal, setShowModal, ModalEvent, setModalEvent} = useContext(ModalContext);
+    const {showModal, setShowModal, ModalEvent, setModalEvent, clientY, setClientY} = useContext(ModalContext);
 
     useEffect(() => {
         // APIからJSONデータを取得
@@ -63,7 +63,6 @@ const Calendar: React.FC = (): JSX.Element => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
       
-      // console.log(events)s
       const filterevents = events.filter((info: { groupId: string; }) => {
         return groupidList.includes(info.groupId);
       });
@@ -74,7 +73,7 @@ const Calendar: React.FC = (): JSX.Element => {
             plugins = {[dayGridPlugin, listPlugin]}
             initialView = "dayGridMonth"
             locales = {[jaLocale]}
-            dayMaxEvents = {6}
+            dayMaxEvents = {5}
             locale = "ja"
             contentHeight = {"auto"}
             headerToolbar = {
@@ -108,14 +107,10 @@ const Calendar: React.FC = (): JSX.Element => {
             eventClick = {info => {
               const event = info.event;
 
-              console.log(event.extendedProps.description)
-
               let dateValue: Date | null = null;
-              
               if (event.start) {
                 dateValue = new Date(event.start);
               }
-              
               let formatdateValue = '';
               if (dateValue) {
                 formatdateValue = dateValue.toLocaleDateString('ja-JP', {month: '2-digit', day: '2-digit', weekday: 'short'});
@@ -123,10 +118,17 @@ const Calendar: React.FC = (): JSX.Element => {
               
               setShowModal(true);
               setModalEvent([event.title, formatdateValue, event.extendedProps.description, event.extendedProps.location, event.extendedProps.idolname]);
-              
+              setClientY(info.jsEvent.clientY);
               }}
         />
-            {showModal && (<ModalComp />)}
+            {/* {showModal && (<ModalComp />)} */}
+            {showModal && (
+              // <div className="overlay" onClick={handleClick}>
+              <div className="overlay">
+                <ModalComp />
+              </div>
+            )}
+
       </div>
     );
   }
