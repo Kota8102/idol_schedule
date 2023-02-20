@@ -39,7 +39,7 @@ const Table:React.FC = () => {
                             <thead className="bg-gray-50">
                             <tr>
                                 {column.map((item) => (
-                                    <th scope="col" className="px-6 py-3 text-xs font-bold text-center text-gray-500 uppercase">{item}</th>
+                                    <th scope="col" className="px-4 py-3 text-xs font-bold text-center text-gray-500 uppercase">{item}</th>
 
                                 ))}
                             </tr>
