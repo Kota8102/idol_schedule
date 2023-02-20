@@ -16,7 +16,7 @@ const ModalList = () => {
 
             <div className="flex inline-flex items-start pt-2 pb-2">
                 <div className="pr-5 pt-2">
-                    <GrStopFill size={18}/>
+                <GrStopFill size={18}/>
                 </div>
                 <div className="whitespace-pre-wrap text-xl md:text-2xl ">
                     {ModalEvent[0]}
