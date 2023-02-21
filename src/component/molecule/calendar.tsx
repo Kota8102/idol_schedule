@@ -14,7 +14,6 @@ import ModalComp from './modal';
 const Calendar: React.FC = (): JSX.Element => {
 
     const [events, setEvents] = useState([]);
-
     const groupColors: { [key: string]: string } = {
       '1': '#a855f7',
       '2': '#059669',
@@ -118,16 +117,11 @@ const Calendar: React.FC = (): JSX.Element => {
               
               setShowModal(true);
               setModalEvent([event.title, formatdateValue, event.extendedProps.description, event.extendedProps.location, event.extendedProps.idolname]);
-              setClientY(info.jsEvent.clientY);
+              setClientY(info.jsEvent.clientY + window.scrollY);
               }}
         />
-            {/* {showModal && (<ModalComp />)} */}
-            {showModal && (
-              // <div className="overlay" onClick={handleClick}>
-              <div className="overlay">
-                <ModalComp />
-              </div>
-            )}
+        
+            {showModal && <div className="overlay"><ModalComp /></div>}
 
       </div>
     );
