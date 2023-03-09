@@ -1,6 +1,6 @@
-import React from 'react';
-import Layout from '../component/organisms/layout';
-import Markdown from '../component/molecule/markdown';
+import React from 'react'
+import Layout from '../component/organisms/layout'
+import Markdown from '../component/atom/markdown'
 
 const markdownText = `
 # このサイトについて
@@ -24,15 +24,14 @@ const markdownText = `
 
 [お問い合わせ](https://forms.gle/qBN7Y265P82KL4xi6)
 
-`;
+`
 
 const AboutPage: React.FC = () => {
-
-  return (
-    <Layout>
-      <Markdown body={markdownText} />
-    </Layout>
-  );
+	return (
+		<Layout>
+			<Markdown body={markdownText} />
+		</Layout>
+	)
 }
 
-export default AboutPage;
+export default AboutPage
