@@ -7,28 +7,10 @@ import ModalContext from '../../contexts/ModalContext'
 import ModalDetail from '../atom/modaldetail'
 import { groupColors } from '../atom/idols'
 
-const ModalList = () => {
+const ModalList: React.FC = () => {
 	const { ModalEvent } = useContext(ModalContext)
 	const groupid = ModalEvent[5]
 	const color = groupColors[groupid]
-
-	// モーダルの最大高さをウィンドウ高さの8割に設定
-	// const [maxHeight, setMaxHeight] = useState(window.innerHeight * 0.8)
-	// useEffect(() => {
-	// 	const handleResize = () => setMaxHeight(window.innerHeight * 0.8)
-	// 	window.addEventListener('resize', handleResize)
-	// 	return () => window.removeEventListener('resize', handleResize)
-	// }, [])
-
-	// // コンテンツの高さを取得し、モーダルの高さを調整する
-	// const [contentHeight, setContentHeight] = useState(0)
-	// const contentRef = useRef<HTMLDivElement | null>(null)
-	// useEffect(() => {
-	// 	if (contentRef.current) {
-	// 		setContentHeight(contentRef.current.clientHeight)
-	// 	}
-	// }, [ModalEvent])
-	// const modalHeight = Math.min(contentHeight, maxHeight)
 
 	return (
 		<div className="flex flex-col pl-6 pr-6 pb-2">

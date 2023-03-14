@@ -1,58 +1,57 @@
-import React, { useRef, useEffect, useContext, useState } from 'react'
+import React, { useRef, useEffect, useState, useContext } from 'react'
 
 import ModalList from './modallist'
 import ModalHeader from './modalheader'
 import ModalContext from '../../contexts/ModalContext'
 
-// type ModalPosition = {
-// 	width?: number
-// 	height?: number
-// 	top: number
-// 	left: number
-// }
-
 const Modal: React.FC = () => {
 	const modalWidth = 448
-	const contentRef = useRef<HTMLDivElement | null>(null)
-	const headerRef = useRef<HTMLDivElement | null>(null)
-	const { ModalEvent, modalPosition, showModal, setShowModal } =
-		useContext(ModalContext)
+	const modalcontentRef = useRef<HTMLDivElement | null>(null)
+	const modalheaderRef = useRef<HTMLDivElement | null>(null)
 
-	const isMobile = (): boolean => {
-		const ua = navigator.userAgent
-		return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-			ua
-		)
-	}
-	// スクロールの位置を固定
+	const {
+		ModalEvent,
+		setModalEvent,
+		modalPosition,
+		showModal,
+		setShowModal,
+	} = useContext(ModalContext)
+
+	const [modalHeight, setModalHeight] = useState(0)
+	const [modalcontentHeight, setModalContentHeight] = useState(0)
+
 	useEffect(() => {
-		const originalOverflow = document.body.style.overflow
-		const originalScrollPosition = window.scrollY
+		if (modalcontentRef.current && modalheaderRef.current) {
+			const contentHeight = modalcontentRef.current.clientHeight
+			const headerHeight = modalheaderRef.current.clientHeight
+			const maxmodalHeight = Math.floor(window.innerHeight * 0.8)
 
-		if (showModal) {
-			document.body.style.overflow = 'hidden'
-		} else {
-			document.body.style.overflow = originalOverflow
-			window.scrollTo(0, originalScrollPosition)
-		}
+			setModalHeight(contentHeight + headerHeight)
 
-		return () => {
-			document.body.style.overflow = originalOverflow
-			window.scrollTo(0, originalScrollPosition)
+			if (contentHeight + headerHeight > maxmodalHeight) {
+				setModalContentHeight(maxmodalHeight - headerHeight)
+				setModalHeight(maxmodalHeight)
+			} else {
+				setModalContentHeight(contentHeight)
+				setModalHeight(contentHeight + headerHeight)
+			}
+			console.log(modalcontentHeight)
 		}
-	}, [showModal])
+	}, [modalcontentRef, modalheaderRef, ModalEvent])
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			const target = event.target as HTMLElement
 
-			// クリックされたターゲットがイベントであれば、モーダルを閉じずにそのイベントのモーダルを開く
 			if (target.closest('.fc-event')) {
-				setShowModal(true)
+				setModalContentHeight(0)
 				return
 			}
-			// モーダル以外の場所がクリックされた場合は、モーダルを閉じる
-			if (contentRef.current && !contentRef.current.contains(target)) {
+
+			if (
+				modalcontentRef.current &&
+				!modalcontentRef.current.contains(target)
+			) {
 				setShowModal(false)
 			}
 		}
@@ -62,57 +61,14 @@ const Modal: React.FC = () => {
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside)
 		}
-	}, [ModalEvent, modalPosition, contentRef, headerRef, setShowModal])
-
-	const [windowHeight, setWindowHeight] = useState(window.innerHeight)
-	useEffect(() => {
-		const handleResize = () => setWindowHeight(window.innerHeight)
-		window.addEventListener('resize', handleResize)
-		return () => window.removeEventListener('resize', handleResize)
-	}, [])
-
-	const [contentHeight, setContentHeight] = useState(0)
-	const [modalHeight, setModalHeight] = useState(0)
-	const [headerHeight, setHeaderHeight] = useState(0)
-	const [maxmodalHeight, setMaxmodalHeight] = useState(0)
-
-	useEffect(() => {
-		if (contentRef.current && headerRef.current) {
-			const contentHeight = contentRef.current.clientHeight
-			const headerHeight = headerRef.current.clientHeight
-			const maxmodalHeight = Math.floor(window.innerHeight * 0.8)
-
-			setHeaderHeight(headerHeight)
-			setMaxmodalHeight(maxmodalHeight)
-
-			if (contentHeight + headerHeight > maxmodalHeight) {
-				setContentHeight(maxmodalHeight - headerHeight)
-				setModalHeight(maxmodalHeight)
-			} else {
-				setContentHeight(contentHeight)
-				setModalHeight(contentHeight + headerHeight)
-			}
-		}
-	}, [ModalEvent, contentRef, headerRef, windowHeight])
+	}, [modalcontentRef, setShowModal])
 
 	// モーダルのスタイル
-	const modalStyle = isMobile()
-		? {
-				top: `${window.scrollY + modalPosition.top}px`,
-		  }
-		: {
-				top: 100,
-				left: 0,
-				height: modalHeight,
-		  }
-
-	const modalContentStyle = {
-		maxHeight:
-			contentHeight + headerHeight > maxmodalHeight
-				? `${maxmodalHeight - headerHeight}px`
-				: undefined,
+	const modalStyle = {
+		// top: 100,
+		left: 0,
+		height: modalHeight,
 	}
-	console.log(modalContentStyle)
 
 	if (modalPosition.left < modalWidth) {
 		modalStyle.left = modalPosition.left + modalPosition.width + 10
@@ -125,18 +81,21 @@ const Modal: React.FC = () => {
 			className="modal absolute inset-0 bg-white rounded-lg border border-gray-200 z-[99999] w-full md:max-w-md md:w-[448px]"
 			style={modalStyle}
 		>
-			<div ref={headerRef}>
+			<div ref={modalheaderRef}>
 				<ModalHeader />
 			</div>
 			<div
-				ref={contentRef}
+				ref={modalcontentRef}
 				className="modal-body overflow-y-auto"
-				style={modalContentStyle}
+				style={
+					modalcontentHeight !== 0
+						? { height: modalcontentHeight }
+						: {}
+				}
 			>
 				<ModalList />
 			</div>
 		</div>
 	)
 }
-
 export default Modal
