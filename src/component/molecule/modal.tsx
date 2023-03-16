@@ -1,38 +1,154 @@
-import React, { useContext } from "react";
-import { GrClose } from  "react-icons/gr";
-import 'material-symbols';
+import React, { useRef, useEffect, useState, useContext } from 'react'
 
-import ModalContext from "../../contexts/ModalContext";
-import ModalList from "./modallist";
+import ModalList from './modallist'
+import ModalHeader from './modalheader'
+import ModalContext from '../../contexts/ModalContext'
 
-const ModalComp:React.FC = () => {
+const Modal: React.FC = () => {
+	const modalWidth = 448
+	const modalcontentRef = useRef<HTMLDivElement | null>(null)
+	const modalheaderRef = useRef<HTMLDivElement | null>(null)
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {showModal, setShowModal, ModalEvent, setModalEvent, clientY, setClientY} = useContext(ModalContext);
+	const { ModalEvent, modalPosition, showModal, setShowModal } =
+		useContext(ModalContext)
 
-    const handleClick = () => {
-        setShowModal(false);
-        setModalEvent([]);
-    };
+	const [modalHeight, setModalHeight] = useState(0)
 
-    return (
-            
-        <div className='modal-content bg-white border-solid rounded-lg border border-gray-200 min-h-min inset-2/4 absolute z-[99999] translate-y-1/4 md:-translate-y-2/4 -translate-x-2/4  w-[20rem] md:w-[30rem]' style={{top: `${clientY}px`}}>
-            <div className='flex flex-col pl-2'>
-                <div className="modal_header flex justify-end pt-2 pr-2">
-    
-                    <div className="p-2 hover:bg-gray-200" onClick={handleClick}>
-                        <button>
-                            <GrClose size={21} className="w-21 h-21" />
-                        </button>
-                    </div>
+	const [isModalHeightAdjusted, setisModalHeightAdjusted] = useState(false)
+	const innerHeight = Math.floor(window.innerHeight * 0.8)
+	const innermoblieHeight = Math.floor(window.innerHeight * 0.9)
 
-                </div>
-                <ModalList />
-            </div>
+	const isMobile = (): boolean => {
+		const ua = navigator.userAgent
+		return (
+			/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+				ua
+			) && document.documentElement.clientWidth < 768
+		)
+	}
 
-        </div>
-)
+	const [modalcontentHeight, setModalContentHeight] = useState(
+		isMobile() ? innermoblieHeight : 0
+	)
+
+	useEffect(() => {
+		if (modalcontentRef.current && modalheaderRef.current) {
+			const contentHeight = modalcontentRef.current.clientHeight
+			const headerHeight = modalheaderRef.current.clientHeight
+			const maxmodalHeight = Math.floor(window.innerHeight * 0.8)
+
+			setModalHeight(contentHeight + headerHeight)
+
+			if (contentHeight + headerHeight > maxmodalHeight) {
+				setModalContentHeight(maxmodalHeight - headerHeight)
+				setModalHeight(maxmodalHeight)
+				setisModalHeightAdjusted(true)
+			} else {
+				setModalContentHeight(contentHeight)
+				setModalHeight(contentHeight + headerHeight)
+				setisModalHeightAdjusted(false)
+			}
+		}
+		if (isMobile()) {
+			setModalContentHeight(innermoblieHeight)
+		}
+	}, [modalcontentRef, modalheaderRef, ModalEvent, innerHeight])
+
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			const target = event.target as HTMLElement
+
+			if (target.closest('.fc-event')) {
+				setModalContentHeight(0)
+				return
+			}
+
+			if (
+				modalcontentRef.current &&
+				!modalcontentRef.current.contains(target)
+			) {
+				setShowModal(false)
+			}
+		}
+
+		document.addEventListener('mousedown', handleClickOutside)
+
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside)
+		}
+	}, [modalcontentRef, setShowModal])
+
+	// スクロールの位置を固定
+	useEffect(() => {
+		const originalOverflow = document.body.style.overflow
+		const originalScrollPosition = window.scrollY
+
+		if (showModal) {
+			document.body.style.overflow = 'hidden'
+		} else {
+			document.body.style.overflow = originalOverflow
+			window.scrollTo(0, originalScrollPosition)
+		}
+
+		return () => {
+			document.body.style.overflow = originalOverflow
+			window.scrollTo(0, originalScrollPosition)
+		}
+	}, [showModal])
+
+	// モーダルのスタイル
+	const modalStyle = isMobile()
+		? {
+				top: `calc(50% + ${window.scrollY}px)`,
+				left: '50%',
+				transform: 'translate(-50%, -50%)',
+				height: '100%',
+				// left: 0,
+				width: '100%',
+		  }
+		: {
+				top: 0,
+				left: 0,
+				height: modalHeight,
+		  }
+
+	if (isMobile() === false) {
+		if (modalPosition.left < modalWidth) {
+			modalStyle.left = modalPosition.left + modalPosition.width + 10
+		} else {
+			modalStyle.left = modalPosition.left - modalWidth
+		}
+
+		if (isModalHeightAdjusted || modalPosition.top - modalHeight < 0) {
+			modalStyle.top = 90
+		} else if (innerHeight - modalPosition.top < modalHeight) {
+			modalStyle.top = modalPosition.top - modalHeight
+		} else {
+			modalStyle.top = modalPosition.top
+		}
+	}
+	console.log(modalStyle.top)
+
+	return (
+		<div
+			className="modal absolute inset-0 bg-white rounded-lg border border-gray-200 z-[99999] w-full md:max-w-md md:w-[448px]"
+			style={modalStyle}
+		>
+			<div ref={modalheaderRef}>
+				<ModalHeader />
+			</div>
+			<div
+				ref={modalcontentRef}
+				className="modal-body overflow-y-auto"
+				style={
+					modalcontentHeight !== 0
+						? { height: modalcontentHeight }
+						: {}
+				}
+			>
+				<ModalList />
+			</div>
+		</div>
+	)
 }
-
-export default ModalComp
+export default Modal

@@ -1,6 +1,6 @@
-import React from 'react';
-import Markdown from '../component/molecule/markdown';
-import Layout from '../component/organisms/layout';
+import React from 'react'
+import Markdown from '../component/atom/markdown'
+import Layout from '../component/organisms/layout'
 
 const markdownText = `
   # プライバシーポリシー
@@ -47,14 +47,12 @@ const markdownText = `
   制定日:2023年1月21日
 
   `
-;
-
 const PrivacyPage: React.FC = () => {
-  return (
-    <Layout>
-        <Markdown body={markdownText} />
-    </Layout>
-  );
+	return (
+		<Layout>
+			<Markdown body={markdownText} />
+		</Layout>
+	)
 }
 
-export default PrivacyPage;
+export default PrivacyPage
