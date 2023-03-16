@@ -14,7 +14,11 @@ export const idols = [
     { name: "のらりくらり", color: "accent-pink-500", groupid: "8"}
   ];
 
-export const groupColors = {
+interface GroupColors {
+  [key: string]: string;
+}
+
+export const groupColors: GroupColors = {
   '1': '#a855f7',
   '2': '#059669',
   '3': '#f43f5e',

@@ -1,21 +1,18 @@
-import React from 'react';
+import React from 'react'
 
-import Layout from '../component/organisms/layout';
-import Calendar from '../component/molecule/calendar';
-import Loader from '../component/atom/loader';
+import Layout from '../component/organisms/layout'
+import Calendar from '../component/organisms/calendar'
+import Loader from '../component/atom/loader'
 
 const Home: React.FC = (): JSX.Element => {
-  
-  return (
-    <Layout isIdolslist={true}>
-      
-        <div>
-          <Loader />
-          <Calendar />
-        </div>
-      
-    </Layout>
-  );
-};
+	return (
+		<Layout isIdolslist={true}>
+			<div>
+				<Loader />
+				<Calendar />
+			</div>
+		</Layout>
+	)
+}
 
-export default Home;
+export default Home
