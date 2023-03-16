@@ -21,7 +21,7 @@ const Layout = ({ children, isIdolslist }: Props) => {
 						<div className="basis-1/12 p-4 md:inline-block">
 							<Sidebar isIdolslist={isIdolslist} />
 						</div>
-						<div className="flex-auto md:p-4">{children}</div>
+						<div className="flex-auto md:p-1">{children}</div>
 					</div>
 				</main>
 				<Footer />

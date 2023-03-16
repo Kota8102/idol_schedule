@@ -9,16 +9,27 @@ const Modal: React.FC = () => {
 	const modalcontentRef = useRef<HTMLDivElement | null>(null)
 	const modalheaderRef = useRef<HTMLDivElement | null>(null)
 
-	const {
-		ModalEvent,
-		setModalEvent,
-		modalPosition,
-		showModal,
-		setShowModal,
-	} = useContext(ModalContext)
+	const { ModalEvent, modalPosition, showModal, setShowModal } =
+		useContext(ModalContext)
 
 	const [modalHeight, setModalHeight] = useState(0)
-	const [modalcontentHeight, setModalContentHeight] = useState(0)
+
+	const [isModalHeightAdjusted, setisModalHeightAdjusted] = useState(false)
+	const innerHeight = Math.floor(window.innerHeight * 0.8)
+	const innermoblieHeight = Math.floor(window.innerHeight * 0.9)
+
+	const isMobile = (): boolean => {
+		const ua = navigator.userAgent
+		return (
+			/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+				ua
+			) && document.documentElement.clientWidth < 768
+		)
+	}
+
+	const [modalcontentHeight, setModalContentHeight] = useState(
+		isMobile() ? innermoblieHeight : 0
+	)
 
 	useEffect(() => {
 		if (modalcontentRef.current && modalheaderRef.current) {
@@ -31,13 +42,17 @@ const Modal: React.FC = () => {
 			if (contentHeight + headerHeight > maxmodalHeight) {
 				setModalContentHeight(maxmodalHeight - headerHeight)
 				setModalHeight(maxmodalHeight)
+				setisModalHeightAdjusted(true)
 			} else {
 				setModalContentHeight(contentHeight)
 				setModalHeight(contentHeight + headerHeight)
+				setisModalHeightAdjusted(false)
 			}
-			console.log(modalcontentHeight)
 		}
-	}, [modalcontentRef, modalheaderRef, ModalEvent])
+		if (isMobile()) {
+			setModalContentHeight(innermoblieHeight)
+		}
+	}, [modalcontentRef, modalheaderRef, ModalEvent, innerHeight])
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -63,18 +78,56 @@ const Modal: React.FC = () => {
 		}
 	}, [modalcontentRef, setShowModal])
 
-	// モーダルのスタイル
-	const modalStyle = {
-		// top: 100,
-		left: 0,
-		height: modalHeight,
-	}
+	// スクロールの位置を固定
+	useEffect(() => {
+		const originalOverflow = document.body.style.overflow
+		const originalScrollPosition = window.scrollY
 
-	if (modalPosition.left < modalWidth) {
-		modalStyle.left = modalPosition.left + modalPosition.width + 10
-	} else {
-		modalStyle.left = modalPosition.left - modalWidth
+		if (showModal) {
+			document.body.style.overflow = 'hidden'
+		} else {
+			document.body.style.overflow = originalOverflow
+			window.scrollTo(0, originalScrollPosition)
+		}
+
+		return () => {
+			document.body.style.overflow = originalOverflow
+			window.scrollTo(0, originalScrollPosition)
+		}
+	}, [showModal])
+
+	// モーダルのスタイル
+	const modalStyle = isMobile()
+		? {
+				top: `calc(50% + ${window.scrollY}px)`,
+				left: '50%',
+				transform: 'translate(-50%, -50%)',
+				height: '100%',
+				// left: 0,
+				width: '100%',
+		  }
+		: {
+				top: 0,
+				left: 0,
+				height: modalHeight,
+		  }
+
+	if (isMobile() === false) {
+		if (modalPosition.left < modalWidth) {
+			modalStyle.left = modalPosition.left + modalPosition.width + 10
+		} else {
+			modalStyle.left = modalPosition.left - modalWidth
+		}
+
+		if (isModalHeightAdjusted || modalPosition.top - modalHeight < 0) {
+			modalStyle.top = 90
+		} else if (innerHeight - modalPosition.top < modalHeight) {
+			modalStyle.top = modalPosition.top - modalHeight
+		} else {
+			modalStyle.top = modalPosition.top
+		}
 	}
+	console.log(modalStyle.top)
 
 	return (
 		<div
