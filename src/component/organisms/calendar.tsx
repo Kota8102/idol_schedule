@@ -151,7 +151,7 @@ const Calendar: React.FC = (): JSX.Element => {
 			/>
 
 			{showModal && (
-				<div className="overlay show flex flex-col">
+				<div className="modal overlay show flex flex-col">
 					<Modal />
 				</div>
 			)}
