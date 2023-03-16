@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { IconContext } from 'react-icons'
 import { GrLocation, GrTextAlignLeft, GrGroup } from 'react-icons/gr'
 import { BsFillSquareFill } from 'react-icons/bs'
