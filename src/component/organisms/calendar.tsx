@@ -33,7 +33,7 @@ const Calendar: React.FC = (): JSX.Element => {
 
 	const { setIsLoading } = useContext(LoadingContext)
 
-	const { showModal, setShowModal, setModalEvent, setModalPosition } =
+	const { showModal, setShowModal, setmodalEvent, setModalPosition } =
 		useContext(ModalContext)
 
 	useEffect(() => {
@@ -132,14 +132,15 @@ const Calendar: React.FC = (): JSX.Element => {
 					const eventRect = info.el.getBoundingClientRect()
 					setShowModal(false)
 					setShowModal(true)
-					setModalEvent([
-						event.title,
-						formatdateValue,
-						event.extendedProps.description,
-						event.extendedProps.location,
-						event.extendedProps.idolname,
-						event.groupId,
-					])
+					setmodalEvent({
+						title: event.title,
+						date: dateValue,
+						formatdate: formatdateValue,
+						description: event.extendedProps.description,
+						location: event.extendedProps.location,
+						idolname: event.extendedProps.idolname,
+						groupid: event.groupId,
+					})
 					setModalPosition({
 						width: eventRect.width,
 						height: eventRect.height,

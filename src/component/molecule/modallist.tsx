@@ -8,8 +8,8 @@ import ModalDetail from '../atom/modaldetail'
 import { groupColors } from '../atom/idols'
 
 const ModalList: React.FC = () => {
-	const { ModalEvent } = useContext(ModalContext)
-	const groupid = ModalEvent[5]
+	const { modalEvent } = useContext(ModalContext)
+	const groupid = modalEvent.groupid
 	const color = groupColors[groupid]
 
 	return (
@@ -22,30 +22,32 @@ const ModalList: React.FC = () => {
 						</IconContext.Provider>
 					</div>
 					<div className="whitespace-pre-wrap text-xl md:text-2xl ">
-						{ModalEvent[0]}
+						{modalEvent.title}
 					</div>
 				</div>
-				<div className="pl-10">{ModalEvent[1]}</div>
+				<div className="pl-10">{modalEvent.formatdate}</div>
 			</div>
 
-			<ModalDetail text={ModalEvent[4]}>
+			<ModalDetail text={modalEvent.idolname}>
 				<GrGroup size={21} />
 			</ModalDetail>
 
-			{ModalEvent[2] && (
+			{modalEvent.description && (
 				<div className="flex inline-flex items-start pt-2 pb-2">
 					<div className="pr-5 pt-2">
 						<GrTextAlignLeft size={18} />
 					</div>
 					<div
 						className="whitespace-pre-wrap overflow-auto break-words"
-						dangerouslySetInnerHTML={{ __html: ModalEvent[2] }}
+						dangerouslySetInnerHTML={{
+							__html: modalEvent.description,
+						}}
 					/>
 				</div>
 			)}
 
-			{ModalEvent[3] && (
-				<ModalDetail text={ModalEvent[3]}>
+			{modalEvent.location && (
+				<ModalDetail text={modalEvent.location}>
 					<GrLocation size={18} />
 				</ModalDetail>
 			)}
