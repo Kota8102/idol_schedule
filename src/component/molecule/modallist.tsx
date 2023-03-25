@@ -1,7 +1,11 @@
 import React, { useContext } from 'react'
 import { IconContext } from 'react-icons'
-import { GrLocation, GrTextAlignLeft, GrGroup } from 'react-icons/gr'
-import { BsFillSquareFill } from 'react-icons/bs'
+import {
+	MdSquare,
+	MdLocationOn,
+	MdGroup,
+	MdFormatAlignLeft,
+} from 'react-icons/md'
 
 import ModalContext from '../../contexts/ModalContext'
 import ModalDetail from '../atom/modaldetail'
@@ -18,7 +22,7 @@ const ModalList: React.FC = () => {
 				<div className="flex inline-flex items-start pt-1 pb-2">
 					<div className="pr-5 pt-2">
 						<IconContext.Provider value={{ color, size: '18' }}>
-							<BsFillSquareFill />
+							<MdSquare />
 						</IconContext.Provider>
 					</div>
 					<div className="whitespace-pre-wrap text-xl md:text-2xl ">
@@ -29,13 +33,13 @@ const ModalList: React.FC = () => {
 			</div>
 
 			<ModalDetail text={modalEvent.idolname}>
-				<GrGroup size={21} />
+				<MdGroup size={21} />
 			</ModalDetail>
 
 			{modalEvent.description && (
 				<div className="flex inline-flex items-start pt-2 pb-2">
 					<div className="pr-5 pt-2">
-						<GrTextAlignLeft size={18} />
+						<MdFormatAlignLeft size={18} />
 					</div>
 					<div
 						className="whitespace-pre-wrap overflow-auto break-words"
@@ -48,7 +52,7 @@ const ModalList: React.FC = () => {
 
 			{modalEvent.location && (
 				<ModalDetail text={modalEvent.location}>
-					<GrLocation size={18} />
+					<MdLocationOn size={18} />
 				</ModalDetail>
 			)}
 		</div>
