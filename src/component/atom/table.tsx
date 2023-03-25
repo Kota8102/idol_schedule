@@ -28,7 +28,12 @@ const data: Props[] = [
 		url: 'https://sandaltelephone.com/',
 		twitter: 'https://twitter.com/sandaltelephone',
 	},
-	// { id: 4, name: "kolokol", url:"https://kinopo.jp/", twitter: "https://twitter.com/kinopo_idol" },
+	{
+		id: 4,
+		name: 'kolokol',
+		url: 'https://kinopo.jp/',
+		twitter: 'https://twitter.com/kinopo_idol',
+	},
 	{
 		id: 5,
 		name: 'タイトル未定',
