@@ -11,24 +11,10 @@ import CalendarContext from '../../contexts/Calendar'
 
 import '../../styles/calendar.sass'
 import Modal from '../molecule/modal'
+import { groupColors } from '../atom/idolData'
 
 const Calendar: React.FC = (): JSX.Element => {
 	const [events, setEvents] = useState([])
-	const groupColors: { [key: string]: string } = {
-		'1': '#a855f7',
-		'2': '#059669',
-		'3': '#f43f5e',
-		'4': '#0d9488',
-		'5': '#0284c7',
-		'6': '#2563eb',
-		'7': '#d946ef',
-		'8': '#ec4899',
-		'9': '#404040',
-		'10': '#64748b',
-		'11': '#0d9488',
-		'12': '#d97706',
-		'13': '#6d28d9',
-	}
 
 	const { groupidList } = useContext(CheckboxContext)
 
