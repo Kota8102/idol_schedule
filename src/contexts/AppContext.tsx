@@ -3,12 +3,15 @@ import React, { ReactNode, useState } from 'react'
 import CheckboxContext from './CheckboxContext'
 import LoadingContext from './LoadingContext'
 import ModalContext from './ModalContext'
+import CalendarContext from './Calendar'
 
 type Props = {
 	children: ReactNode
 }
 
 const AppContext: React.FC<Props> = ({ children }) => {
+	const [view, setView] = useState('dayGridPlugin')
+
 	const [isLoading, setIsLoading] = useState(false)
 
 	const [groupidList, setGroupidList] = useState<string[]>(
@@ -61,7 +64,9 @@ const AppContext: React.FC<Props> = ({ children }) => {
 				value={{ checkList, setCheckList, groupidList, setGroupidList }}
 			>
 				<LoadingContext.Provider value={{ isLoading, setIsLoading }}>
-					{children}
+					<CalendarContext.Provider value={{ view, setView }}>
+						{children}
+					</CalendarContext.Provider>
 				</LoadingContext.Provider>
 			</CheckboxContext.Provider>
 		</ModalContext.Provider>

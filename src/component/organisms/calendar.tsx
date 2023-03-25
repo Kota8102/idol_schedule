@@ -7,6 +7,7 @@ import listPlugin from '@fullcalendar/list'
 import CheckboxContext from '../../contexts/CheckboxContext'
 import LoadingContext from '../../contexts/LoadingContext'
 import ModalContext from '../../contexts/ModalContext'
+import CalendarContext from '../../contexts/Calendar'
 
 import '../../styles/calendar.sass'
 import Modal from '../molecule/modal'
@@ -35,6 +36,8 @@ const Calendar: React.FC = (): JSX.Element => {
 
 	const { showModal, setShowModal, setmodalEvent, setModalPosition } =
 		useContext(ModalContext)
+
+	const { setView } = useContext(CalendarContext)
 
 	useEffect(() => {
 		// APIからJSONデータを取得
@@ -82,7 +85,9 @@ const Calendar: React.FC = (): JSX.Element => {
 				businessHours={{ daysOfWeek: [1, 2, 3, 4, 5] }}
 				events={filterevents}
 				// events = {events}
-
+				datesSet={(viewInfo) => {
+					setView(viewInfo.view.type)
+				}}
 				// eventのcssを調整
 				eventDidMount={(info) => {
 					const event = info.event
@@ -132,6 +137,7 @@ const Calendar: React.FC = (): JSX.Element => {
 					const eventRect = info.el.getBoundingClientRect()
 					setShowModal(false)
 					setShowModal(true)
+
 					setmodalEvent({
 						title: event.title,
 						date: dateValue,
@@ -141,6 +147,7 @@ const Calendar: React.FC = (): JSX.Element => {
 						idolname: event.extendedProps.idolname,
 						groupid: event.groupId,
 					})
+
 					setModalPosition({
 						width: eventRect.width,
 						height: eventRect.height,
