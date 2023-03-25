@@ -1,6 +1,6 @@
 import React from 'react'
 import IdolsList from '../molecule/idolslist'
-import { idols } from '../atom/idols'
+import { idols } from '../atom/idolData'
 
 type Props = {
 	isIdolslist?: boolean
