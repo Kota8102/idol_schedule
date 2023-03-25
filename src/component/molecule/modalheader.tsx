@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { GrClose } from 'react-icons/gr'
 
+import AddToGoogleCalendarButton from './AddToGoogleCalendarButton'
 import ModalContext from '../../contexts/ModalContext'
 
 const ModalHeader: React.FC = () => {
@@ -8,11 +9,19 @@ const ModalHeader: React.FC = () => {
 		event.stopPropagation()
 	}
 
-	const { setShowModal, setModalEvent } = useContext(ModalContext)
+	const { setShowModal, modalEvent, setmodalEvent } = useContext(ModalContext)
 
 	const handleClick = () => {
 		setShowModal(false)
-		setModalEvent([])
+		setmodalEvent({
+			title: '',
+			date: null,
+			formatdate: '',
+			description: '',
+			location: '',
+			idolname: '',
+			groupid: '',
+		})
 	}
 
 	return (
@@ -20,6 +29,10 @@ const ModalHeader: React.FC = () => {
 			className="modal-header flex justify-end pt-2 pr-2"
 			onMouseDown={handleMouseDown}
 		>
+			<div className="p-2 hover:bg-gray-200">
+				<AddToGoogleCalendarButton event={modalEvent} />
+			</div>
+
 			<div className="p-2 hover:bg-gray-200" onClick={handleClick}>
 				<button>
 					<GrClose size={21} className="w-21 h-21" />

@@ -22,7 +22,24 @@ const AppContext: React.FC<Props> = ({ children }) => {
 	)
 
 	const [showModal, setShowModal] = useState(false)
-	const [ModalEvent, setModalEvent] = useState<string[]>([])
+
+	const [modalEvent, setmodalEvent] = useState<{
+		title: string
+		date: Date | null
+		formatdate: string
+		description: string
+		location: string
+		idolname: string
+		groupid: string
+	}>({
+		title: '',
+		date: null,
+		formatdate: '',
+		description: '',
+		location: '',
+		idolname: '',
+		groupid: '',
+	})
 
 	const [modalPosition, setModalPosition] = useState({
 		width: 0,
@@ -37,8 +54,8 @@ const AppContext: React.FC<Props> = ({ children }) => {
 			value={{
 				showModal,
 				setShowModal,
-				ModalEvent,
-				setModalEvent,
+				modalEvent,
+				setmodalEvent,
 				modalPosition,
 				setModalPosition,
 			}}

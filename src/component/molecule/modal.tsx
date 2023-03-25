@@ -10,7 +10,7 @@ const Modal: React.FC = () => {
 	const modalcontentRef = useRef<HTMLDivElement | null>(null)
 	const modalheaderRef = useRef<HTMLDivElement | null>(null)
 
-	const { ModalEvent, modalPosition, showModal, setShowModal } =
+	const { modalEvent, modalPosition, showModal, setShowModal } =
 		useContext(ModalContext)
 
 	const { view } = useContext(CalendarContext)
@@ -55,7 +55,7 @@ const Modal: React.FC = () => {
 		if (isMobile()) {
 			setModalContentHeight(innermoblieHeight)
 		}
-	}, [modalcontentRef, modalheaderRef, ModalEvent, innerHeight])
+	}, [modalcontentRef, modalheaderRef, modalEvent, innerHeight])
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
