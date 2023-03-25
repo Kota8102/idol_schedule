@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { GrClose } from 'react-icons/gr'
+import { MdOutlineClose } from 'react-icons/md'
 
 import AddToGoogleCalendarButton from './AddToGoogleCalendarButton'
 import ModalContext from '../../contexts/ModalContext'
@@ -35,7 +35,7 @@ const ModalHeader: React.FC = () => {
 
 			<div className="p-2 hover:bg-gray-200" onClick={handleClick}>
 				<button>
-					<GrClose size={21} className="w-21 h-21" />
+					<MdOutlineClose size={21} className="w-21 h-21" />
 				</button>
 			</div>
 		</div>
