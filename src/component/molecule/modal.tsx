@@ -3,6 +3,7 @@ import React, { useRef, useEffect, useState, useContext } from 'react'
 import ModalList from './modallist'
 import ModalHeader from './modalheader'
 import ModalContext from '../../contexts/ModalContext'
+import CalendarContext from '../../contexts/Calendar'
 
 const Modal: React.FC = () => {
 	const modalWidth = 448
@@ -11,6 +12,8 @@ const Modal: React.FC = () => {
 
 	const { modalEvent, modalPosition, showModal, setShowModal } =
 		useContext(ModalContext)
+
+	const { view } = useContext(CalendarContext)
 
 	const [modalHeight, setModalHeight] = useState(0)
 
@@ -112,19 +115,34 @@ const Modal: React.FC = () => {
 				height: modalHeight,
 		  }
 
-	if (isMobile() === false) {
-		if (modalPosition.left < modalWidth) {
-			modalStyle.left = modalPosition.left + modalPosition.width + 10
-		} else {
-			modalStyle.left = modalPosition.left - modalWidth
-		}
+	// Check if user is on mobile
+	if (!isMobile()) {
+		// Check if view is dayGridMonth
+		if (view === 'dayGridMonth') {
+			// Check if modal is on left side of the screen
+			if (modalPosition.left < modalWidth) {
+				modalStyle.left = modalPosition.left + modalPosition.width + 10
+			} else {
+				modalStyle.left = modalPosition.left - modalWidth
+			}
 
-		if (isModalHeightAdjusted || modalPosition.top - modalHeight < 0) {
-			modalStyle.top = 90
-		} else if (innerHeight - modalPosition.top < modalHeight) {
-			modalStyle.top = modalPosition.top - modalHeight
+			// Check if modal is on top of the screen
+			if (isModalHeightAdjusted || modalPosition.top - modalHeight < 0) {
+				modalStyle.top = 90
+			} else if (innerHeight - modalPosition.top < modalHeight) {
+				// Check if modal is on bottom of the screen
+				modalStyle.top = modalPosition.top - modalHeight
+			} else {
+				modalStyle.top = modalPosition.top
+			}
 		} else {
-			modalStyle.top = modalPosition.top
+			modalStyle.left = modalPosition.left + 30
+			if (innerHeight - modalPosition.top < modalHeight) {
+				modalStyle.top =
+					(innerHeight - modalHeight) / 2 + window.scrollY + 30
+			} else {
+				modalStyle.top = modalPosition.top + window.scrollY + 40
+			}
 		}
 	}
 
