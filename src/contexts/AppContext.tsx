@@ -5,6 +5,8 @@ import LoadingContext from './LoadingContext'
 import ModalContext from './ModalContext'
 import CalendarContext from './Calendar'
 
+import { totalIdols } from '../component/atom/idolData'
+
 type Props = {
 	children: ReactNode
 }
@@ -15,10 +17,12 @@ const AppContext: React.FC<Props> = ({ children }) => {
 	const [isLoading, setIsLoading] = useState(false)
 
 	const [groupidList, setGroupidList] = useState<string[]>(
-		Array.from({ length: 13 }, (_, i) => i + 1).map((i) => i.toString())
+		Array.from({ length: totalIdols }, (_, i) => i + 1).map((i) =>
+			i.toString()
+		)
 	)
 	const [checkList, setCheckList] = useState<boolean[]>(
-		new Array(13).fill(true)
+		new Array(totalIdols).fill(true)
 	)
 
 	const [showModal, setShowModal] = useState(false)
