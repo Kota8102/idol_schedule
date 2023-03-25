@@ -1,15 +1,14 @@
-import {createContext} from 'react';
+import { createContext } from 'react'
 
 type LoadingContextType = {
-  isLoading: boolean,
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+	isLoading: boolean
+	setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const LoadingContext = createContext<LoadingContextType>({
-  isLoading:true,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setIsLoading:()=>{},
-});
+	isLoading: true,
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	setIsLoading: () => {},
+})
 
-export default LoadingContext;
-  
+export default LoadingContext
