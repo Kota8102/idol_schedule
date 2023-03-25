@@ -5,7 +5,7 @@ import { BsFillSquareFill } from 'react-icons/bs'
 
 import ModalContext from '../../contexts/ModalContext'
 import ModalDetail from '../atom/modaldetail'
-import { groupColors } from '../atom/idols'
+import { groupColors } from '../atom/idolData'
 
 const ModalList: React.FC = () => {
 	const { modalEvent } = useContext(ModalContext)
