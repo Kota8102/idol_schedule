@@ -37,6 +37,7 @@ const Calendar: React.FC = (): JSX.Element => {
 					mode: 'cors',
 					headers: {
 						'Content-Type': 'application/json',
+						'x-api-key': `${process.env.REACT_APP_API_KEY}`,
 					},
 				}
 			)
@@ -121,7 +122,7 @@ const Calendar: React.FC = (): JSX.Element => {
 
 					// getBoundingClientRectを使ってクリックされたイベントの位置情報を取得する
 					const eventRect = info.el.getBoundingClientRect()
-
+					setShowModal(false)
 					setShowModal(true)
 
 					setmodalEvent({
