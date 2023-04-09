@@ -26,17 +26,18 @@ const ModalHeader: React.FC = () => {
 
 	return (
 		<div
-			className="modal-header flex justify-end pt-2 pr-2"
+			className="modal-header flex justify-end p-3 space-x-1"
 			onMouseDown={handleMouseDown}
 		>
-			<div className="p-2 hover:bg-gray-200">
+			<div className="w-10 h-10p-2 hover:bg-gray-200 hover:rounded-md flex items-center justify-center">
 				<AddToGoogleCalendarButton event={modalEvent} />
 			</div>
 
-			<div className="p-2 hover:bg-gray-200" onClick={handleClick}>
-				<button>
-					<MdOutlineClose size={21} className="w-21 h-21" />
-				</button>
+			<div
+				className="w-10 h-10 p-2 hover:bg-gray-200 hover:rounded-md flex items-center justify-center"
+				onClick={handleClick}
+			>
+				<MdOutlineClose size={24} />
 			</div>
 		</div>
 	)

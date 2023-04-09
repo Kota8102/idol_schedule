@@ -121,7 +121,7 @@ const Calendar: React.FC = (): JSX.Element => {
 
 					// getBoundingClientRectを使ってクリックされたイベントの位置情報を取得する
 					const eventRect = info.el.getBoundingClientRect()
-					setShowModal(false)
+
 					setShowModal(true)
 
 					setmodalEvent({
