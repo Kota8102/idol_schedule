@@ -1,4 +1,10 @@
-import React, { useRef, useEffect, useState, useContext } from 'react'
+import React, {
+	useRef,
+	useEffect,
+	useState,
+	useContext,
+	useLayoutEffect,
+} from 'react'
 
 import ModalList from './modallist'
 import ModalHeader from './modalheader'
@@ -17,7 +23,6 @@ const Modal: React.FC = () => {
 
 	const [modalHeight, setModalHeight] = useState(0)
 
-	const [isModalHeightAdjusted, setisModalHeightAdjusted] = useState(false)
 	const innerHeight = Math.floor(window.innerHeight * 0.8)
 	const innermoblieHeight = Math.floor(window.innerHeight * 0.9)
 
@@ -34,7 +39,7 @@ const Modal: React.FC = () => {
 		isMobile() ? innermoblieHeight : 0
 	)
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		if (modalcontentRef.current && modalheaderRef.current) {
 			const contentHeight = modalcontentRef.current.clientHeight
 			const headerHeight = modalheaderRef.current.clientHeight
@@ -45,11 +50,9 @@ const Modal: React.FC = () => {
 			if (contentHeight + headerHeight > maxmodalHeight) {
 				setModalContentHeight(maxmodalHeight - headerHeight)
 				setModalHeight(maxmodalHeight)
-				setisModalHeightAdjusted(true)
 			} else {
 				setModalContentHeight(contentHeight)
 				setModalHeight(contentHeight + headerHeight)
-				setisModalHeightAdjusted(false)
 			}
 		}
 		if (isMobile()) {
@@ -102,11 +105,10 @@ const Modal: React.FC = () => {
 	// モーダルのスタイル
 	const modalStyle = isMobile()
 		? {
-				top: `calc(50% + ${window.scrollY}px)`,
+				top: 0,
 				left: '50%',
 				transform: 'translate(-50%, -50%)',
 				height: '100%',
-				// left: 0,
 				width: '100%',
 		  }
 		: {
@@ -126,14 +128,18 @@ const Modal: React.FC = () => {
 				modalStyle.left = modalPosition.left - modalWidth
 			}
 
-			// Check if modal is on top of the screen
-			if (isModalHeightAdjusted || modalPosition.top - modalHeight < 0) {
-				modalStyle.top = 90
-			} else if (innerHeight - modalPosition.top < modalHeight) {
-				// Check if modal is on bottom of the screen
-				modalStyle.top = modalPosition.top - modalHeight
+			if (modalPosition.top + modalHeight > innerHeight) {
+				if (modalPosition.top > modalHeight) {
+					modalStyle.top =
+						window.scrollY + modalPosition.top - modalHeight
+				} else {
+					modalStyle.top =
+						window.scrollY +
+						Math.floor(window.innerHeight * 0.5) -
+						Math.floor(modalHeight * 0.5)
+				}
 			} else {
-				modalStyle.top = modalPosition.top
+				modalStyle.top = window.scrollY + modalPosition.top
 			}
 		} else {
 			modalStyle.left = modalPosition.left + 30
@@ -148,7 +154,7 @@ const Modal: React.FC = () => {
 
 	return (
 		<div
-			className="modal absolute inset-0 bg-white rounded-lg border border-gray-200 z-[99999] w-full md:max-w-md md:w-[448px]"
+			className="modal absolute inset-0 bg-white rounded-lg border border-gray-200 z-[99999] w-full md:max-w-md md:w-[448px] shadow-2xl"
 			style={modalStyle}
 		>
 			<div ref={modalheaderRef}>
