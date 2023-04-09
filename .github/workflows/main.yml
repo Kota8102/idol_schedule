@@ -15,7 +15,7 @@ jobs:
 
             - name: Build
               run: npm run build # React ビルド
-              env: REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+              env: REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }} # React env
 
             - name: Deploy # S3にデプロイ
               env:
