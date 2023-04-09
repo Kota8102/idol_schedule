@@ -105,10 +105,10 @@ const Modal: React.FC = () => {
 	// モーダルのスタイル
 	const modalStyle = isMobile()
 		? {
-				top: 0,
+				top: `calc(50% + ${window.scrollY}px)`,
 				left: '50%',
 				transform: 'translate(-50%, -50%)',
-				height: '100%',
+				height: '80%',
 				width: '100%',
 		  }
 		: {
