@@ -108,7 +108,7 @@ const Modal: React.FC = () => {
 				top: `calc(50% + ${window.scrollY}px)`,
 				left: '50%',
 				transform: 'translate(-50%, -50%)',
-				height: '80%',
+				height: '100%',
 				width: '100%',
 		  }
 		: {
