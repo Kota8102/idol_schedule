@@ -2,7 +2,7 @@ export const idols = [
 	{ name: 'CYNHN', color: 'accent-cyan-600', groupid: '16' },
 	{ name: 'fishbowl', color: 'accent-blue-600', groupid: '6' },
 	{ name: 'kolokol', color: 'accent-teal-600', groupid: '4' },
-	{ name: 'Miller, Miller', color: 'accent-amber-600', groupid: '12' },
+	{ name: 'Mirror,Mirror.', color: 'accent-amber-600', groupid: '12' },
 	{ name: 'Ringwanderung', color: 'accent-neutral-700', groupid: '9' },
 	{ name: 'SANDAL TELEPHONE', color: 'accent-rose-500', groupid: '3' },
 	{ name: 'situasion', color: 'accent-slate-500', groupid: '10' },
@@ -10,11 +10,11 @@ export const idols = [
 	{ name: 'tipToe.', color: 'accent-fuchsia-500', groupid: '7' },
 	{ name: 'yosugala', color: 'accent-purple-500', groupid: '1' },
 	{ name: 'かすみ草とステラ', color: 'accent-lime-600', groupid: '15' },
-	{ name: 'きのホ。', color: 'accent-emerald-600', groupid: '2' },
+	// { name: 'きのホ。', color: 'accent-emerald-600', groupid: '2' },
 	{ name: '群青の世界', color: 'accent-orange-600', groupid: '14' },
 	{ name: 'さとりモンスター', color: 'accent-violet-700', groupid: '13' },
 	{ name: 'タイトル未定', color: 'accent-sky-600', groupid: '5' },
-	{ name: 'のらりくらり', color: 'accent-pink-500', groupid: '8' },
+	// { name: 'のらりくらり', color: 'accent-pink-500', groupid: '8' },
 ]
 
 interface GroupColors {
