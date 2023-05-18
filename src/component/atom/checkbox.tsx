@@ -3,7 +3,6 @@ import CheckboxContext from '../../contexts/CheckboxContext'
 
 type Props = {
 	inp_name: string
-
 	color: string
 	index: number
 	groupid: string

@@ -11,7 +11,7 @@ import CalendarContext from '../../contexts/Calendar'
 
 import '../../styles/calendar.sass'
 import Modal from '../molecule/modal'
-import { groupColors } from '../atom/idolData'
+import { groupColors } from '../atom/idoldata'
 
 const Calendar: React.FC = (): JSX.Element => {
 	const [events, setEvents] = useState([])
@@ -89,6 +89,7 @@ const Calendar: React.FC = (): JSX.Element => {
 					)
 
 					// group毎の色を決定
+
 					element.style.backgroundColor =
 						groupColors[event.groupId] || 'white'
 

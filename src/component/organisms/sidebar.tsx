@@ -1,13 +1,14 @@
+// sidebar.tsx
 import React from 'react'
 import IdolsList from '../molecule/idolslist'
-import { idols } from '../atom/idolData'
+import { idolColorData } from '../atom/idoldata'
 
 type Props = {
 	isIdolslist?: boolean
 }
 
 const Sidebar: React.FC<Props> = ({ isIdolslist }) => {
-	return <div>{isIdolslist ? <IdolsList idols={idols} /> : null}</div>
+	return <div>{isIdolslist ? <IdolsList idols={idolColorData} /> : null}</div>
 }
 
 export default Sidebar
