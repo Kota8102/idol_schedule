@@ -3,13 +3,6 @@ import { FaTwitter } from 'react-icons/fa'
 import { FiExternalLink } from 'react-icons/fi'
 import { IdolSocialData } from './idoldata'
 
-type Props = {
-	id: number
-	name: string
-	url: string
-	twitter: string
-}
-
 const column = ['idol name', 'url', 'twitter']
 
 const data = IdolSocialData
