@@ -1,6 +1,6 @@
 [
 	{
-		"id": 6,
+		"id": 1,
 		"name": "fishbowl",
 		"color": "accent-blue-600",
 		"colorcode": "#2563eb",
@@ -8,7 +8,7 @@
 		"twitter": "https://twitter.com/fishbowl2021"
 	},
 	{
-		"id": 3,
+		"id": 2,
 		"name": "INUWASI",
 		"color": "accent-gray-800",
 		"colorcode": "#1f2937",
@@ -16,7 +16,7 @@
 		"twitter": "https://twitter.com/INUWASI_O"
 	},
 	{
-		"id": 4,
+		"id": 3,
 		"name": "kolokol",
 		"color": "accent-amber-600",
 		"colorcode": "#d97706",
@@ -24,7 +24,7 @@
 		"twitter": "https://twitter.com/klkl_official/"
 	},
 	{
-		"id": 12,
+		"id": 4,
 		"name": "Mirror,Mirror.",
 		"color": "accent-lime-600",
 		"colorcode": "#4d7c0f",
@@ -32,7 +32,7 @@
 		"twitter": "https://twitter.com/MirrorMirror_V"
 	},
 	{
-		"id": 9,
+		"id": 5,
 		"name": "Ringwanderung",
 		"color": "accent-neutral-700",
 		"colorcode": "#404040",
@@ -40,7 +40,7 @@
 		"twitter": "https://twitter.com/RWR__OFFICIAL"
 	},
 	{
-		"id": 11,
+		"id": 6,
 		"name": "THE ORCHESTRA TOKYO",
 		"color": "accent-teal-600",
 		"colorcode": "#0d9488",
@@ -56,7 +56,7 @@
 		"twitter": "https://twitter.com/tiptoe_official"
 	},
 	{
-		"id": 1,
+		"id": 8,
 		"name": "yosugala",
 		"color": "accent-purple-500",
 		"colorcode": "#a855f7",
@@ -64,7 +64,7 @@
 		"twitter": "https://twitter.com/yosugala_info"
 	},
 	{
-		"id": 13,
+		"id": 9,
 		"name": "さとりモンスター",
 		"color": "accent-violet-700",
 		"colorcode": "#6d28d9",
@@ -72,7 +72,7 @@
 		"url": "https://ntkcreation.com/artist/satomon"
 	},
 	{
-		"id": 5,
+		"id": 10,
 		"name": "タイトル未定",
 		"color": "accent-cyan-600",
 		"colorcode": "#0891b2",
