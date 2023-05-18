@@ -6,7 +6,7 @@ import Toggle from '../atom/toggle'
 type Props = {
 	name: string
 	color: string
-	groupid: string
+	id: number
 }
 
 const IdolsList: React.FC<{ idols: Props[] }> = ({ idols }) => {
@@ -21,7 +21,7 @@ const IdolsList: React.FC<{ idols: Props[] }> = ({ idols }) => {
 						inp_name={idol.name}
 						color={idol.color}
 						index={index}
-						groupid={idol.groupid}
+						groupid={idol.id.toString()}
 					/>
 				))}
 			</div>

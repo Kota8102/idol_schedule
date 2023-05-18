@@ -9,7 +9,7 @@ import {
 
 import ModalContext from '../../contexts/ModalContext'
 import ModalDetail from '../atom/modaldetail'
-import { groupColors } from '../atom/idolData'
+import { groupColors } from '../atom/idoldata'
 
 const ModalList: React.FC = () => {
 	const { modalEvent } = useContext(ModalContext)
