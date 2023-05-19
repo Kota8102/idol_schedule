@@ -13,7 +13,7 @@ const Checkbox: React.FC<Props> = ({ inp_name, color, index, groupid }) => {
 		useContext(CheckboxContext)
 
 	return (
-		<label className="flex my-1 items-center hover:bg-gray-200 px-2">
+		<label className="flex my-1 items-center hover:bg-gray-200 px-2 cursor-pointer">
 			<input
 				type="checkbox"
 				checked={checkList[index]}

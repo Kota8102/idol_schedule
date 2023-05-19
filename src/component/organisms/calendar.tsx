@@ -85,7 +85,8 @@ const Calendar: React.FC = (): JSX.Element => {
 						'text-xs',
 						'leading-5',
 						'tracking-wide',
-						'pl-1'
+						'pl-1',
+						'cursor-pointer' // hover時のカーソルの形をpointerに
 					)
 
 					// group毎の色を決定
