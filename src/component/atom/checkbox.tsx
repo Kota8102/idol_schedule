@@ -2,13 +2,20 @@ import React, { useContext } from 'react'
 import CheckboxContext from '../../contexts/CheckboxContext'
 
 type Props = {
-	inp_name: string
+	name: string
 	color: string
+	colorcode: string
 	index: number
 	groupid: string
 }
 
-const Checkbox: React.FC<Props> = ({ inp_name, color, index, groupid }) => {
+const Checkbox: React.FC<Props> = ({
+	name,
+	color,
+	colorcode,
+	index,
+	groupid,
+}) => {
 	const { checkList, setCheckList, groupidList, setGroupidList } =
 		useContext(CheckboxContext)
 
@@ -28,9 +35,18 @@ const Checkbox: React.FC<Props> = ({ inp_name, color, index, groupid }) => {
 					}
 					setCheckList(newCheckList)
 				}}
-				className={`${color} w-4 h-4`}
+				className={`w-4 h-4 block border rounded ${
+					checkList[index] ? color : ''
+				}`}
+				style={{
+					accentColor: colorcode,
+					borderColor: colorcode,
+					backgroundColor: checkList[index]
+						? colorcode
+						: 'transparent',
+				}}
 			/>
-			<p className="px-2 truncate">{inp_name}</p>
+			<p className="px-2 truncate">{name}</p>
 		</label>
 	)
 }
